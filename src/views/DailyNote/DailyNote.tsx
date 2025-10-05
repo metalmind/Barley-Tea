@@ -1,4 +1,4 @@
-import SignOutButton from "../../components/SignOutButton";
+import "./DailyNote.css";
 import { Note } from "../../components/Note/Note";
 import type { NoteType } from "../../hooks/useNotes";
 import { useTodaysNote } from "../../hooks/useNotes";
@@ -27,7 +27,6 @@ export const DailyNote = () => {
 
   return (
     <div className="container">
-      <SignOutButton />
       <Sundial content={getPhaseOfDay() as PhaseType} />
       {note ? (
         <Note
@@ -40,6 +39,21 @@ export const DailyNote = () => {
       ) : (
         <Note key={-1} id={-1} type={getRandomNote()} isEditable />
       )}
+      <div className="dailyNoteDateContainer">
+        <Sundial content={getPhaseOfDay() as PhaseType} />
+        {/* <DateComponent date={new Date().toISOString()} /> */}
+        {note ? (
+          <Note
+            key={note.id}
+            id={note.id}
+            content={note.message}
+            type={note.background}
+            isEditable
+          />
+        ) : (
+          <Note key={-1} id={-1} type={getRandomNote()} isEditable />
+        )}
+      </div>
     </div>
   );
 };

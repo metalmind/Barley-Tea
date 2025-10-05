@@ -17,6 +17,9 @@ function SignOutButton() {
     <button
         onClick={signOut}
         style={{
+          position: "absolute",
+          top: "2.5%",
+          right: "2.5%",
           backgroundColor: "#333",
           color: "white",
           border: "none",

@@ -12,6 +12,15 @@ export const DateComponent = ({ date }: DateComponentProps) => {
     let month = numToMonth(date.getMonth());
     let year = date.getFullYear();
 
+    const today = new Date();
+    if (
+      today.getDate() === day &&
+      today.getMonth() === date.getMonth() &&
+      today.getFullYear() === year
+    ) {
+      return "Today";
+    }
+
     return dayOfWeek + ", " + month + " " + day + " " + year;
   };
 
