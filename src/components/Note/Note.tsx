@@ -1,19 +1,30 @@
 import { useState } from "react";
 import "./Note.css";
 import type { NoteType } from "../../hooks/useNotes.tsx";
+import { useUpsertNote } from "../../hooks/useNotes.tsx";
 import note1 from "@/assets/note1.png";
 import note2 from "@/assets/note2.png";
 import note3 from "@/assets/note3.png";
 import note4 from "@/assets/note4.png";
 
 interface NoteProps {
+  id: number;
   content?: string;
   type: NoteType;
   isEditable?: boolean;
 }
 
-export const Note = ({ content = "", type, isEditable = false }: NoteProps) => {
+export const Note = ({
+  id,
+  content = "",
+  type,
+  isEditable = false,
+}: NoteProps) => {
   const [noteType, setNoteType] = useState<NoteType>(type);
+  const [message, setMessage] = useState<string>(content);
+  const [editing, setEditing] = useState<boolean>(isEditable);
+
+  const upsertNote = useUpsertNote();
 
   const notes = {
     1: note1,
@@ -37,19 +48,30 @@ export const Note = ({ content = "", type, isEditable = false }: NoteProps) => {
   const changeNoteType = (direction: "left" | "right") =>
     setNoteType(getNextNoteType(noteType, direction) as NoteType);
 
-  const noteText = isEditable ? (
+  const handleSave = async () => {
+    try {
+      await upsertNote(id, message, noteType);
+      setEditing(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const noteText = editing ? (
     <textarea
       id="noteInput"
       className={`note${noteType}`}
       placeholder="What made you happy today?"
+      value={message}
+      onChange={(e) => setMessage(e.target.value)}
     />
   ) : (
-    <p className={`noteText note${noteType}`}>{content}</p>
+    <p className={`noteText note${noteType}`}>{message}</p>
   );
 
   return (
-    <div className="container">
-      {isEditable && (
+    <div className="editableNoteContainer">
+      {editing && (
         <button
           className="changeTypeButton"
           onClick={() => changeNoteType("left")}
@@ -73,8 +95,28 @@ export const Note = ({ content = "", type, isEditable = false }: NoteProps) => {
       <div className={`noteContainer`}>
         <img src={notes[noteType]} alt="sticky note" />
         {noteText}
+        {!editing && (
+          <button className={`editButton editNote${noteType}`} onClick={() => setEditing(true)}>
+            <svg
+              width="24px"
+              height="24px"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g>
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path d="M15.728 9.686l-1.414-1.414L5 17.586V19h1.414l9.314-9.314zm1.414-1.414l1.414-1.414-1.414-1.414-1.414 1.414 1.414 1.414zM7.242 21H3v-4.243L16.435 3.322a1 1 0 0 1 1.414 0l2.829 2.829a1 1 0 0 1 0 1.414L7.243 21z" />
+              </g>
+            </svg>
+          </button>
+        )}
+        {editing && (
+          <button className="saveButton" onClick={handleSave}>
+            Save
+          </button>
+        )}
       </div>
-      {isEditable && (
+      {editing && (
         <button
           className="changeTypeButton"
           onClick={() => changeNoteType("right")}
