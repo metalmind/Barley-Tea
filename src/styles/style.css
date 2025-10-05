@@ -1,0 +1,59 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Coming Soon", sans-serif;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+img,
+picture,
+svg,
+canvas,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Coming Soon";
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/coming-soon-v20-latin-regular.woff2') format('woff2');
+}
