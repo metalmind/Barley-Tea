@@ -39,21 +39,6 @@ export const DailyNote = () => {
       ) : (
         <Note key={-1} id={-1} type={getRandomNote()} isEditable />
       )}
-      <div className="dailyNoteDateContainer">
-        <Sundial content={getPhaseOfDay() as PhaseType} />
-        {/* <DateComponent date={new Date().toISOString()} /> */}
-        {note ? (
-          <Note
-            key={note.id}
-            id={note.id}
-            content={note.message}
-            type={note.background}
-            isEditable
-          />
-        ) : (
-          <Note key={-1} id={-1} type={getRandomNote()} isEditable />
-        )}
-      </div>
     </div>
   );
 };
