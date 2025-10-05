@@ -11,7 +11,8 @@ body {
 
 .noteContainer {
   position: relative;
-  max-width: 45%;
+  max-width: 35%;
+  margin: 6px;
   backdrop-filter: blur(1px);
 }
 
