@@ -17,6 +17,7 @@ export const DailyNote = () => {
           id={note.id}
           content={note.message}
           type={note.background}
+          isEditable
         />
       ) : (
         <Note key={-1} id={-1} type={getRandomNote()} isEditable />

@@ -4,8 +4,8 @@ import { useCurrentUser } from "./useUsers";
 import { getLocalDateStartEndTime } from "./helpers";
 
 const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY
+  import.meta.env.VITE_SUPABASE_URL!,
+  import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY!
 );
 
 export type NoteType = 1 | 2 | 3 | 4;
@@ -15,22 +15,52 @@ export interface Note {
   created_at: string;
   message: string;
   background: NoteType;
-  author: number;
+  author: string;
 }
 
 export const useNotes = () => {
   const [notes, setNotes] = useState<Note[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getNotes();
   }, []);
 
   async function getNotes() {
-    const { data } = await supabase.from("notes").select();
-    setNotes(data ?? []);
+    setLoading(true);
+
+    // Get the current authenticated user
+    const {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser();
+
+    if (userError) {
+      console.error("Error fetching user:", userError);
+      setLoading(false);
+      return;
+    }
+
+    // Fetch notes for this user, ordered by newest first
+    const { data, error } = await supabase
+    .from("notes")
+    .select("*")
+    .eq("author", user?.id)
+    .order("created_at", { ascending: false }) // newest first
+    .limit(7);
+
+    const notes = data ? data.reverse() : [];
+
+    if (error) {
+      console.error("Error fetching notes:", error);
+    } else {
+      setNotes(notes ?? []);
+    }
+
+    setLoading(false);
   }
 
-  return notes;
+  return { notes, loading, refresh: getNotes };
 };
 
 export const useTodaysNote = () => {

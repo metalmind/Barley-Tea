@@ -12,7 +12,7 @@ export default function Navbar() {
           Home
         </button>
         <div className="w-px bg-gray-200"></div>
-        <button onClick={() => navigate('/home/')} className="flex-1 py-4 px-8 hover:bg-gray-100">
+        <button onClick={() => navigate('/weeklyNotes/')} className="flex-1 py-4 px-8 hover:bg-gray-100">
           Week
         </button>
         <div className="w-px bg-gray-200"></div>

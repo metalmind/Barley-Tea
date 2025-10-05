@@ -22,7 +22,7 @@ export const Note = ({
 }: NoteProps) => {
   const [noteType, setNoteType] = useState<NoteType>(type);
   const [message, setMessage] = useState<string>(content);
-  const [editing, setEditing] = useState<boolean>(isEditable);
+  const [editing, setEditing] = useState<boolean>(id === -1 && isEditable);
 
   const upsertNote = useUpsertNote();
 
@@ -95,7 +95,7 @@ export const Note = ({
       <div className={`noteContainer`}>
         <img src={notes[noteType]} alt="sticky note" />
         {noteText}
-        {!editing && (
+        {!editing && isEditable && (
           <button className={`editButton editNote${noteType}`} onClick={() => setEditing(true)}>
             <svg
               width="24px"

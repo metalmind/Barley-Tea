@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AuthUI from "./Auth";
+import { NoteList } from './views/WeeklyNotes'
 import { DailyNote } from "./views/DailyNote/DailyNote";
 import "./App.css";
 import "./styles/style.css";
@@ -14,14 +15,10 @@ function App() {
       <Routes>
         <Route path="/" element={<AuthUI />} />
         <Route
-          path="/home"
-          element={
-            <>
-              <DailyNote />
-              <BottomNavbar />
-            </>
-          }
-        />
+          path="/"
+          element={<AuthUI />} />
+        <Route path="/home" element={<><DailyNote /><BottomNavbar /></>} />
+        <Route path="/weeklyNotes" element={<><NoteList /><BottomNavbar /></>} />
       </Routes>
     </Router>
   );
