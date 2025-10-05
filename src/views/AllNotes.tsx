@@ -1,3 +1,4 @@
+import { DateComponent } from "../components/DateComponent/DateComponent";
 import { Note } from "../components/Note/Note";
 import { useNotes } from "../hooks/useNotes";
 import "./WeeklyView.css";
@@ -13,12 +14,10 @@ export const AllNotes = () => {
                 <p>No notes yet!</p>
             ) : (
                 notes.map((note) => (
-                    <Note
-                        id={note.id}
-                        key={note.id}
-                        content={note.message + note.created_at}
-                        type={note.background}
-                    />
+                    <div className="noteDateContainer">
+                        <DateComponent key={note.id} date={note.created_at} />
+                        <Note id={note.id} content={note.message} type={note.background} />
+                    </div>
                 ))
             )}
         </div>
