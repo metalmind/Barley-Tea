@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AuthUI from "./Auth";
-import { DailyNote } from "./views/DailyNote"
+import { DailyNote } from "./views/DailyNote/DailyNote"
 import "./App.css";
 import "./styles/style.css";
 
