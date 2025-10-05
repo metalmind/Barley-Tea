@@ -13,12 +13,22 @@ export const DailyNote = () => {
     return Math.floor(Math.random() * 4 + 1) as NoteType;
   };
 
+    const getPhaseOfDay = () => {
+        let hour = new Date().getHours()
+        if (0 <= hour && hour < 10)
+            return 0;
+        else if (10 <= hour && hour <= 17)
+            return 1;
+        else if (17 < hour && hour <= 23)
+            return 2;
+        else return -1;
+    };
+
   const signOut = async () => {
     await supa.auth.signOut();
     window.location.href = "/"; // redirect to login page
   };
 
-  //return <Note type={getRandomNote()} isEditable />;
   return (
     <div className="daily-note-page" style={{ textAlign: "center", padding: "20px" }}>
       <button
@@ -35,6 +45,8 @@ export const DailyNote = () => {
       >
         Sign Out
       </button>
+
+      <Sundial phase={getPhaseOfDay()}/>
 
       <Note type={getRandomNote()} isEditable />
     </div>
