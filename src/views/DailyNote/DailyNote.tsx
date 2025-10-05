@@ -1,6 +1,7 @@
 import { Note } from "../../components/Note/Note.tsx";
 import type { NoteType } from "../../hooks/useNotes.tsx";
 import { useTodaysNote } from "../../hooks/useNotes.tsx";
+import SignOutButton from "../../components/SignOutButton.tsx";
 
 export const DailyNote = () => {
   const getRandomNote = () => {
@@ -11,6 +12,7 @@ export const DailyNote = () => {
 
   return (
     <div className="container">
+      <SignOutButton />
       {note ? (
         <Note
           key={note.id}
