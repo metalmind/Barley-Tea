@@ -16,7 +16,7 @@ const AuthUI = () => {
       data: { subscription },
     } = supa.auth.onAuthStateChange((event) => {
       if (event === "SIGNED_IN") {
-        navigate("/authenticated");
+        navigate("/home");
       }
     });
 
