@@ -24,7 +24,7 @@ const AuthUI = () => {
   }, [navigate]);
 
   return (
-    <div style={{ margin: "0 auto" }}>
+    <div style={{ background: "white", padding: "5rem", width: "400px" }}>
       <Auth
         supabaseClient={supa}
         providers={["google", "github", "apple", "discord"]}

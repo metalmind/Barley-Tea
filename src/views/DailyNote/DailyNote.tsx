@@ -1,4 +1,3 @@
-import "./DailyNote.css";
 import { Note } from "../../components/Note/Note.tsx";
 import type { NoteType } from "../../hooks/useNotes.tsx";
 import { useTodaysNote } from "../../hooks/useNotes.tsx";

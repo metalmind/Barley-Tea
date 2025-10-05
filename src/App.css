@@ -1,5 +1,13 @@
 #root {
-  max-width: 1280px;
-  min-width: 350px;
   text-align: center;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("././assets/background.jpeg");
+  background-size: cover;
+  background-repeat: repeat;
+  background-color: rgba(234, 224, 210, 0.3);
+  background-blend-mode: lighten;
 }

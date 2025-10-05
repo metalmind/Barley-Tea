@@ -11,8 +11,7 @@ body {
 
 .noteContainer {
   position: relative;
-  width: 60%;
-  padding: 1.5rem;
+  max-width: 45%;
   backdrop-filter: blur(1px);
 }
 
@@ -76,4 +75,11 @@ body {
   background: white;
   border: 3px dotted #DCCBC6;
   border-radius: 10px; 
+}
+
+@media only screen and (max-width: 1450px) {
+  .noteContainer {
+    min-width: 350px;
+    padding: 0;
+  }
 }
