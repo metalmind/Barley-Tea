@@ -93,7 +93,7 @@ export const Note = ({
         </button>
       )}
       <div className={`noteContainer`}>
-        <img src={notes[noteType]} alt="sticky note" />
+        <img className={`img-note${noteType}`} src={notes[noteType]} alt="sticky note" />
         {noteText}
         {!editing && isEditable && (
           <button className={`editButton editNote${noteType}`} onClick={() => setEditing(true)}>

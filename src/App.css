@@ -11,3 +11,7 @@
   background-color: rgba(234, 224, 210, 0.3);
   background-blend-mode: lighten;
 }
+
+.container {
+  height: 100vh;
+}

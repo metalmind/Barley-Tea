@@ -1,29 +1,26 @@
-import { ButtonHTMLAttributes, useState } from "react";
-import "./Note.css";
-import type { NoteType } from "../../hooks/useNotes.tsx";
-import note1 from "@/assets/note1.png";
-import note2 from "@/assets/note2.png";
-import note3 from "@/assets/note3.png";
-import note4 from "@/assets/note4.png";
-import phase1 from "@/assets/morning.png";
-import phase2 from "@/assets/midday.png";
-import phase3 from "@/assets/vening.png";
+import "./Sundial.css";
+import daytime from "@/assets/daytime.png";
+import afternoon from "@/assets/afternoon.png";
+import night from "@/assets/night.png";
 
-export type PhaseType = 1 | 2 | 3 | 4;
+export type PhaseType = 1 | 2 | 3;
 
 interface PhaseProps {
   content: PhaseType;
 }
 
-function Sundial ({ content = 1  }) {
+function Sundial({ content = 1 }: PhaseProps) {
+  const phases = {
+    1: daytime,
+    2: afternoon,
+    3: night,
+  };
 
-    const phases = {
-        1: note1,
-        2: note2,
-        3: note3
-    };
+  return (
+    <div className="sundial-container">
+      <img className="sundial" src={phases[content]} alt="time of day" />
+    </div>
+  );
+}
 
-    return (
-        <img src = { phases[content] } alt = "time of day" />
-    );
-};
+export default Sundial;
