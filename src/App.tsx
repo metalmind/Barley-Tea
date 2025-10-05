@@ -1,26 +1,24 @@
-import { useEffect, useState } from "react";
-import { createClient } from "@supabase/supabase-js";
-
-const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY);
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Note } from "./components/Note/Note";
+import { useNotes } from "./hooks/useNotes";
+import "./App.css";
+import "./styles/style.css";
 
 function App() {
-  const [instruments, setInstruments] = useState([]);
-
-  useEffect(() => {
-    getInstruments();
-  }, []);
-
-  async function getInstruments() {
-    const { data } = await supabase.from("instruments").select();
-    setInstruments(data);
-  }
+  const notes = useNotes();
 
   return (
-    <ul>
-      {instruments.map((instrument) => (
-        <li key={instrument.id}>{instrument.name}</li>
-      ))}
-    </ul>
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={notes.map((note) => {
+            return <Note content={note.message} type={note.background} />;
+          })}
+        />
+        <Route path="/highlights" element={<div>hello there</div>} />
+      </Routes>
+    </Router>
   );
 }
 
