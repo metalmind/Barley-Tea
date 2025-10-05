@@ -69,6 +69,16 @@ body {
   background-color: rgb(236, 209, 209);
 }
 
+.editNote1 {
+  top: 15%;
+  right: 12%;
+}
+
+.editNote4 {
+  top: 12%;
+  right: 5%;
+}
+
 .saveButton {
   position: absolute;
   bottom: 15%;

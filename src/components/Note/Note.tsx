@@ -96,7 +96,7 @@ export const Note = ({
         <img src={notes[noteType]} alt="sticky note" />
         {noteText}
         {!editing && (
-          <button className="editButton" onClick={() => setEditing(true)}>
+          <button className={`editButton editNote${noteType}`} onClick={() => setEditing(true)}>
             <svg
               width="24px"
               height="24px"
