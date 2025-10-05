@@ -1,6 +1,8 @@
-import { Note } from "../../components/Note/Note.tsx";
-import type { NoteType } from "../../hooks/useNotes.tsx";
-import { useTodaysNote } from "../../hooks/useNotes.tsx";
+import { Note } from "../../components/Note/Note";
+import type { NoteType } from "../../hooks/useNotes";
+import { useTodaysNote } from "../../hooks/useNotes";
+import type { PhaseType } from "../../components/Sundial/Sundial";
+import Sundial from "../../components/Sundial/Sundial";
 
 export const DailyNote = () => {
   const getRandomNote = () => {
@@ -9,8 +11,22 @@ export const DailyNote = () => {
 
   const { note } = useTodaysNote();
 
+  const getPhaseOfDay = () => {
+    let hour = new Date().getHours();
+    if (0 <= hour && hour < 10) {
+      return 1;
+    } else if (10 <= hour && hour <= 17) {
+      return 2;
+    } else if (17 < hour && hour <= 23) {
+      return 3;
+    } else {
+      return -1;
+    }
+  };
+
   return (
     <div className="container">
+      <Sundial content={getPhaseOfDay() as PhaseType} />
       {note ? (
         <Note
           key={note.id}

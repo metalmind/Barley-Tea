@@ -1,0 +1,11 @@
+.dateLabel {
+  font-size: 10pt;
+  background: white;
+  padding: 1rem;
+  position: absolute;
+  top: 10%;
+  left: 15%;
+  transform: rotate(-10deg);
+  z-index: 999;
+  border: 3px dotted #DCCBC6;
+}

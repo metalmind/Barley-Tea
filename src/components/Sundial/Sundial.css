@@ -1,0 +1,10 @@
+.sundial-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.sundial {
+  height: 150px;
+  padding-top: 2rem;
+}
