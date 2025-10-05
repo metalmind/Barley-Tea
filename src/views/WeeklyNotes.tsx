@@ -12,7 +12,8 @@ export const NoteList = () => {
         <p>No notes yet!</p>
       ) : (
         notes.map((note) => (
-          <Note
+          <Note 
+            id={note.id}
             key={note.id}
             content={note.message}
             type={note.background}
