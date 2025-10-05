@@ -1,28 +1,18 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Note } from "./components/Note/Note";
-import { useNotes } from "./hooks/useNotes";
+import AuthUI from "./Auth";
+import { DailyNote } from "./views/DailyNote"
 import "./App.css";
 import "./styles/style.css";
 
 function App() {
-  const notes = useNotes();
 
   return (
     <Router>
       <Routes>
         <Route
           path="/"
-          element={notes.map((note) => {
-            return (
-              <Note
-                key={note.id}
-                content={note.message}
-                type={note.background}
-              />
-            );
-          })}
-        />
-        <Route path="/highlights" element={<div>hello there</div>} />
+          element={<AuthUI />} />
+        <Route path="/home" element={<DailyNote />} />
       </Routes>
     </Router>
   );
