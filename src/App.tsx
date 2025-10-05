@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Authentication from "./Auth";
+import AuthUI from "./Auth";
+import { DailyNote } from "./views/DailyNote"
 import "./App.css";
 import "./styles/style.css";
 
@@ -10,8 +11,8 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Authentication />} />
-        <Route path="/highlights" element={<div>hello there</div>} />
+          element={<AuthUI />} />
+        <Route path="/home" element={<DailyNote />} />
       </Routes>
     </Router>
   );
