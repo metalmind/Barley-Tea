@@ -13,7 +13,13 @@ function App() {
         <Route
           path="/"
           element={notes.map((note) => {
-            return <Note content={note.message} type={note.background} />;
+            return (
+              <Note
+                key={note.id}
+                content={note.message}
+                type={note.background}
+              />
+            );
           })}
         />
         <Route path="/highlights" element={<div>hello there</div>} />
