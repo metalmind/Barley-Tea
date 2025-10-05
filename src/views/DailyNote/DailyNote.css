@@ -1,0 +1,12 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../assets/background.jpeg");
+  background-size: 1750px;
+  background-repeat: repeat;
+  background-color: rgba(234, 224, 210, 0.3);
+  background-blend-mode: lighten;
+}

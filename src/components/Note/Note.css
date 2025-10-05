@@ -2,7 +2,8 @@ body {
   font-size: 14pt;
 }
 
-.container {
+.editableNoteContainer {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,8 +11,9 @@ body {
 
 .noteContainer {
   position: relative;
-  width: 50%;
+  width: 60%;
   padding: 1.5rem;
+  backdrop-filter: blur(1px);
 }
 
 .noteContainer img {
@@ -24,14 +26,11 @@ body {
   height: 50%;
   position: absolute;
   top: 50%;
+  padding-top: 10%;
   text-align: center;
   border: none;
   outline: none;
   resize: none;
-}
-
-#noteInput::placeholder {
-  padding-top: 20%;
 }
 
 .noteText {
@@ -57,7 +56,24 @@ body {
   transform: translate(-50%, -50%);
 }
 
-.changeTypeButton {
+.changeTypeButton,
+.editButton {
   aspect-ratio: 1;
   border-radius: 50%;
+}
+
+.editButton {
+  position: absolute;
+  top: 10%;
+  right: 20%;
+  background-color: rgb(236, 209, 209);
+}
+
+.saveButton {
+  position: absolute;
+  bottom: 15%;
+  left: 12.5%;
+  background: white;
+  border: 3px dotted #DCCBC6;
+  border-radius: 10px; 
 }
