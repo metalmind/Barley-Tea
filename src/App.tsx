@@ -11,14 +11,12 @@ import BottomNavbar from './components/BottomNavbar';
 function App() {
 
   return (
-    <Router>
-      <BottomNavbar />
-      
+    <Router>      
       <Routes>
         <Route
           path="/"
           element={<AuthUI />} />
-        <Route path="/home" element={<DailyNote />} />
+        <Route path="/home" element={<><DailyNote /><BottomNavbar /></>} />
       </Routes>
     </Router>
   );
