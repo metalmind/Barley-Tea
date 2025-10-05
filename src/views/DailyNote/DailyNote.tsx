@@ -1,3 +1,4 @@
+import "./DailyNote.css";
 import { Note } from "../../components/Note/Note";
 import type { NoteType } from "../../hooks/useNotes";
 import { useTodaysNote } from "../../hooks/useNotes";

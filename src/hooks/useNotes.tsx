@@ -18,7 +18,7 @@ export interface Note {
   author: string;
 }
 
-export const useNotes = () => {
+export const useNotes = (type?: string) => {
   const [notes, setNotes] = useState<Note[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -41,13 +41,25 @@ export const useNotes = () => {
       return;
     }
 
-    // Fetch notes for this user, ordered by newest first
-    const { data, error } = await supabase
-    .from("notes")
-    .select("*")
-    .eq("author", user?.id)
-    .order("created_at", { ascending: false }) // newest first
-    .limit(7);
+    // Fetch notes for this user
+    let data: any = null;
+    let error: any = null;
+
+    if (type === "week") {
+      ({ data, error } = await supabase
+        .from("notes")
+        .select("*")
+        .eq("author", user?.id)
+        .order("created_at", { ascending: false })
+        .limit(7));
+    } else {
+      ({ data, error } = await supabase
+        .from("notes")
+        .select("*")
+        .eq("author", user?.id)
+        .order("created_at", { ascending: false }));
+    }
+
 
     const notes = data ? data.reverse() : [];
 
