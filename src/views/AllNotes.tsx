@@ -2,8 +2,8 @@ import { Note } from "../components/Note/Note";
 import { useNotes } from "../hooks/useNotes";
 import "./WeeklyView.css";
 
-export const NoteList = () => {
-    const { notes, loading } = useNotes("week");
+export const AllNotes = () => {
+    const { notes, loading } = useNotes("all");
 
     if (loading) return <p>Loading notes...</p>;
 
